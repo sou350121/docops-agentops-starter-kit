@@ -4,8 +4,9 @@
 
 ### 簡單（推薦）：只用一份 Markdown 就讓 agent 自動跑起來
 
-把這份文件丟給 agent，並在 chat 說「先讀它再開始做事」即可：
-- `runbooks/AGENT_BOOTSTRAP_DOCOPS_AGENTOPS.md`
+把這個 GitHub repo link 丟給 agent，並在 chat 說「先讀它再開始做事」即可：
+- Repo：`https://github.com/sou350121/docops-agentops-starter-kit`
+- Runbook：`runbooks/AGENT_BOOTSTRAP_DOCOPS_AGENTOPS.md`
 
 ## 新手上手：把這套用到你自己的專案（只知道 GitHub 連結也可以）
 
@@ -52,6 +53,57 @@
    - pytest
    - scripts/validate-docops（Windows + CI/Linux）
 4) 不要写入任何 token/密钥；不引入重型框架；不做大规模重构
+```
+
+## 最簡單可操作：角色分工閉環（PM/架构师 → Coder → Reviewer）
+
+核心原則：**三個角色都在同一個 story 下工作**，並且**回填到同一套證據鏈**：
+`stories/<id>.md` + `prompts/<id>.md` +（必要時）`sessions/<id>/failures.md` + `docs/features/<id>/status.md`
+
+> 你只要把下面三段依序貼給 agent（可同一個 agent 分三輪，也可三個 agent），把 `<ID>`/`<TITLE>` 換成你的 story。
+
+### 1) PM/架构师（定需求 + 验收）
+
+```markdown
+你现在扮演 PM/架构师。
+
+先读 `runbooks/AGENT_BOOTSTRAP_DOCOPS_AGENTOPS.md` 并遵守。
+
+目标 Story：stories/<ID>-<TITLE>.md
+
+任务：
+1) 把 story 补完整：目标、范围/非目标、验收标准（必须可验证）、任务拆分、关联文件
+2) 如需架构决策，写到 `docs/features/<ID>-<TITLE>/decisions.md`（若无则创建）
+3) 更新 `prompts/<ID>-<TITLE>.md`，追加小节：`### Agent: PM/Architect / <date>`，记录关键决策与约束
+输出：告诉我下一步 coder 该实现哪些文件/验收点。
+```
+
+### 2) Coder（写代码 + 测试 + ledger）
+
+```markdown
+你现在扮演 Coder。
+
+严格按 `stories/<ID>-<TITLE>.md` 的验收标准实现，不扩大范围。
+
+任务：
+1) 在 `src/` 实现每条验收点
+2) 在 `tests/` 补测试，确保 `pytest` 通过
+3) 更新 `docs/features/<ID>-<TITLE>/status.md`：变更摘要 + 可复制验证命令
+4) 更新 `prompts/<ID>-<TITLE>.md` 追加：`### Agent: Coder / <date>`（你做了什么、关键实现点）
+输出：文件清单 + 验证命令（pytest + validate-docops）。
+```
+
+### 3) Reviewer（对照验收 + 风险/回滚）
+
+```markdown
+你现在扮演 Reviewer。
+
+任务：
+1) 对照 `stories/<ID>-<TITLE>.md` 验收标准逐条检查：是否真的可验证
+2) 检查证据链是否完整：story/prompt/failures/status 是否齐全且互相引用
+3) 提出风险点与回滚方案（必要时写入 `docs/features/<ID>-<TITLE>/status.md` 或 `decisions.md`）
+4) 更新 `prompts/<ID>-<TITLE>.md` 追加：`### Agent: Reviewer / <date>`（审查结论与建议）
+输出：通过/不通过 + 需要修的点 + 最终验证命令。
 ```
 
 ### 4) 你自己怎么验证“真的跑通了”
