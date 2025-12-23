@@ -1,0 +1,27 @@
+# S-0001 MVP 复盘：从 Story 到证据链
+
+## 结论
+S-0001 的 MVP 已跑通：**Issue（索引）→ Story（正文）→ Prompt/Failures（过程证据）→ Code/Test（交付）→ Ledger（状态账本）→ CI（自动校验）**。
+
+## 证据
+- Story：`stories/S-0001-healthcheck.md`
+- Prompt：`prompts/S-0001-healthcheck.md`
+- Failures：`sessions/S-0001-healthcheck/failures.md`
+- Ledger：`docs/features/S-0001-healthcheck/status.md`
+- 验证：
+  - `pytest`
+  - `pwsh -NoProfile -File scripts/validate-docops.ps1`
+
+## 取舍
+- 为了快速跑通闭环，功能选择极小（health payload），但保留了“可测试/可验证/可追溯”的工程要点。
+- 远程仓库未创建前，用 `issues/ISSUE-0001.md` 做离线占位；上线后再迁移到 GitHub Issue。
+
+## 可复用模板
+- Story 骨架：`scripts/new-story.ps1` / `scripts/new-story.sh`
+- Prompt VCS：见 `prompts/` 目录写法
+- PR 模板：`.github/pull_request_template.md`
+- Issue 模板：`.github/ISSUE_TEMPLATE/story.md`
+
+## 下一步（S-0002 建议）
+- 引入一个“失败注入”任务：产生可回滚故障，并把 runbook 走完一遍。
+- 把 Prompt VCS 与 PR review 习惯固定成团队规范（尤其是高风险改动）。
