@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="DocOps + AgentOps Starter Kit banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#0a0f1a"/>
+    </linearGradient>
+    <linearGradient id="stroke" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7c3aed"/>
+      <stop offset="0.5" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      .title{font:700 64px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; fill:#ffffff;}
+      .subtitle{font:400 26px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; fill:#cbd5e1;}
+      .label{font:600 18px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; fill:#e2e8f0;}
+      .small{font:400 15px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; fill:#a5b4fc;}
+      .card{fill:rgba(15,23,42,0.85); stroke:url(#stroke); stroke-width:2; rx:16;}
+      .box{fill:rgba(2,6,23,0.7); stroke:#334155; stroke-width:1.5; rx:14;}
+      .mono{font:600 16px ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; fill:#e2e8f0;}
+      .arrow{stroke:url(#stroke); stroke-width:3; fill:none; marker-end:url(#m); opacity:0.9;}
+    </style>
+    <marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#22d3ee"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g opacity="0.18">
+    <circle cx="980" cy="120" r="180" fill="#22d3ee"/>
+    <circle cx="260" cy="520" r="220" fill="#7c3aed"/>
+  </g>
+
+  <!-- Header text -->
+  <text x="70" y="110" class="title">DocOps + AgentOps Starter Kit</text>
+  <text x="70" y="155" class="subtitle">Hybrid DocOps (Repo as SSOT) + AgentOps (Multi-Agent Loop) Scaffold</text>
+
+  <!-- Diagram container -->
+  <rect x="70" y="210" width="1060" height="360" class="card" filter="url(#glow)"/>
+
+  <!-- Left: stories -->
+  <rect x="110" y="315" width="220" height="110" class="box"/>
+  <text x="130" y="360" class="mono">stories/</text>
+  <text x="130" y="390" class="small">SSOT Needs</text>
+
+  <!-- Middle-left: prompts/sessions -->
+  <rect x="390" y="300" width="250" height="140" class="box"/>
+  <text x="410" y="345" class="mono">prompts/</text>
+  <text x="410" y="375" class="mono">sessions/</text>
+  <text x="410" y="410" class="small">Dialogues &amp; Failures</text>
+
+  <!-- Middle: roles -->
+  <rect x="700" y="275" width="200" height="190" class="box"/>
+  <text x="725" y="325" class="label">PM/Architect</text>
+  <text x="725" y="370" class="label">Coder</text>
+  <text x="725" y="415" class="label">Reviewer</text>
+
+  <!-- Right: outputs -->
+  <rect x="930" y="295" width="170" height="150" class="box"/>
+  <text x="950" y="335" class="label">Code/Test</text>
+  <text x="950" y="370" class="label">Ledger</text>
+  <text x="950" y="405" class="label">Issue/PR</text>
+
+  <!-- Arrows -->
+  <path d="M330 370 C355 370,365 370,385 370" class="arrow"/>
+  <path d="M640 370 C665 370,675 370,700 370" class="arrow"/>
+  <path d="M900 370 C915 370,920 370,930 370" class="arrow"/>
+
+  <!-- Loop arrow (bottom) -->
+  <path d="M1010 455 C1010 520,740 540,560 515 C420 495,260 470,220 440" class="arrow" opacity="0.55"/>
+
+  <!-- Footer note -->
+  <text x="90" y="600" class="small">SSOT → Evidence Chain → Verified Delivery (pytest + validate-docops)</text>
+</svg>

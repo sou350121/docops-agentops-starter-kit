@@ -11,6 +11,7 @@
 
 ## 变更摘要
 - README：在“角色分工闭环”的 PM/Architect 段落加入 scope guardrails（只认 SSOT、只做澄清/方案/拆分、扩范围先问、context overflow fallback）。
+- README：新增顶部 hero banner 图片（用于快速理解 DocOps+AgentOps 闭环结构）。
 - Runbook：加入 SOP 级别的 PM/Architect scope guardrails（同上）。
 
 ## 验证

@@ -35,3 +35,4 @@
 - Guardrails 要放在用户最常复制的地方（README 的 PM/Architect 模板附近），避免“写在深处没人看”。
 - 用显式的“范围变更请求 + 必须先问”机制来阻断 roadmap drift。
 - 提供 context overflow fallback：先把共识外化写回 SSOT，再输出给 coder 的任务清单并停止发散。
+- README 顶部增加 hero banner，降低新手理解成本（一眼看懂 SSOT→证据链→多角色闭环）。

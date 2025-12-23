@@ -1,3 +1,5 @@
+![DocOps + AgentOps Starter Kit](docs/features/assets/hero-docops-agentops.svg)
+
 # DocOps + AgentOps Starter Kit
 
 这是一套可复制到任意工程仓库的 **Hybrid DocOps（Repo 为正文）+ AgentOps（多角色闭环）** 脚手架。
