@@ -24,8 +24,17 @@ foreach ($s in $stories) {
 
   if (Test-Path $status) {
     $content = Get-Content $status -Raw
-    if ($content -notmatch [regex]::Escape((Join-Path $StoriesDir $s.Name))) { Warn "$status does not reference story path" }
-    if ($content -notmatch [regex]::Escape($prompt)) { Warn "$status does not reference prompt path" }
+
+    $storyWin = (Join-Path $StoriesDir $s.Name)
+    $storyPosix = "$StoriesDir/$($s.Name)"
+    if (($content -notmatch [regex]::Escape($storyWin)) -and ($content -notmatch [regex]::Escape($storyPosix))) {
+      Warn "$status does not reference story path"
+    }
+
+    $promptPosix = "$PromptsDir/$base.md"
+    if (($content -notmatch [regex]::Escape($prompt)) -and ($content -notmatch [regex]::Escape($promptPosix))) {
+      Warn "$status does not reference prompt path"
+    }
   }
 }
 
