@@ -2,6 +2,11 @@
 
 这是一套可复制到任意工程仓库的 **Hybrid DocOps（Repo 为正文）+ AgentOps（多角色闭环）** 脚手架。
 
+### 更簡單（推薦）：只用一份 Markdown 就讓 agent 自動跑起來
+
+把這份文件丟給 agent，並在 chat 說「先讀它再開始做事」即可：
+- `runbooks/AGENT_BOOTSTRAP_DOCOPS_AGENTOPS.md`
+
 ## 快速开始
 
 1) 复制本目录到你的项目根目录（或手动拷贝其中的文件结构）。
@@ -32,3 +37,31 @@
 `./scripts/validate-docops.sh` 或 `./scripts/validate-docops.ps1`
 
 并将 `.github/workflows/docops-validation.yml` 复制到你的仓库根目录以启用 CI。
+
+## Cursor / 多 Agent 对话怎么“自动做到” DocOps + AgentOps
+
+这个 repo 提供两层能力：
+
+- **Project Rules（推荐）**：`.cursor/rules/docops-agentops.mdc`
+  - 作用：让每次 Cursor agent / 多 agent 的交付，都自动遵守“证据链必须回填”的规则（Story/Prompt/Failures/Ledger）。
+- **插件（VS Code/Cursor extension）**：`extensions/docops-agentops/`
+  - 作用：在 Command Palette 里一键生成/打开证据链，复制 Master Prompt 直接贴到 chat，并一键跑 `validate-docops`。
+
+### 插件命令
+
+在命令面板搜索 `DocOps:`：
+- `DocOps: New Story (create evidence chain)`
+- `DocOps: Open Evidence Chain (story/prompt/status/failures)`
+- `DocOps: Copy Master Prompt to Clipboard`
+- `DocOps: Validate Evidence Chain`
+
+### 本地安装插件（VSIX）
+
+```bash
+cd extensions/docops-agentops
+npm install
+npm run compile
+npm run package
+```
+
+然后在 Cursor/VS Code 里用 **Install from VSIX...** 安装生成的 `.vsix`。

@@ -1,0 +1,41 @@
+---
+description: "DocOps + AgentOps workflow rules for Cursor agents (evidence chain + minimal scope)"
+globs:
+  - "**/*"
+alwaysApply: true
+---
+
+## DocOps + AgentOps (Hybrid SSOT) — 必须遵守
+
+### 你在这个仓库里的目标
+- **Story 是正文（SSOT）**：所有需求与验收以 `stories/S-xxxx-*.md` 为准。
+- **Issue/PR 只是索引与协作层**：必须链接到 canonical story。
+- **每次改动都要形成证据链**：Story → Prompt/Failures → Code/Test → Ledger(status) →（可选）Issue/PR。
+
+### 允许/禁止
+- **允许修改**：`src/`, `tests/`, `stories/`, `prompts/`, `sessions/`, `docs/features/`, `issues/`, `.github/`, `scripts/`, `runbooks/`, `.cursor/`
+- **禁止**：把任何 token/密钥写入仓库；未经用户明确授权不要引入重型框架/大规模重构
+
+### 每次实现任务的强制输出（做不到就先问）
+- **必须指出目标 story**：`stories/<id>.md`
+- **必须对齐验收标准逐条完成**（如果不做某条，说明原因并回写 story 的“范围/非目标”或 decisions）
+- **必须更新 ledger**：`docs/features/<id>/status.md`（写清变更摘要 + 验证命令）
+- **必须更新 Prompt VCS**：`prompts/<id>.md`
+  - 将“本次对话中用到的 master prompt/关键约束/关键决策”写入或追加
+- **建议记录 failures**：`sessions/<id>/failures.md`
+  - 只有发生偏航/失败/回滚/重大纠结时才写，保持高信噪比
+
+### 多 agent 协作约定（Cursor / 多对话）
+- **按 Story 分工**：同一 story 可以多 agent，但产出必须汇总回同一套文件（`prompts/`、`sessions/`、`docs/features/`）。
+- **每个 agent 的工作片段要可追溯**：
+  - 在 `prompts/<id>.md` 里用小节记录：`### Agent: <role/name> / <date>`（简短即可）
+  - 若出现失败路径，写入 `sessions/<id>/failures.md` 的“尝试 #n”
+
+### 快捷操作（你可以建议用户运行）
+- 生成 story 骨架：
+  - Windows：`pwsh -NoProfile -File scripts/new-story.ps1 -Id S-0002 -Title add-login`
+  - Bash：`bash scripts/new-story.sh S-0002 add-login`
+- 校验证据链：
+  - Windows：`pwsh -NoProfile -File scripts/validate-docops.ps1`
+  - Bash/CI：`bash scripts/validate-docops.sh`
+

@@ -3,7 +3,7 @@
 > 这份文件定义“代理的边界、权限与产出格式”。建议放在仓库根目录，作为 SSOT。
 
 ## 1. 权限与边界
-- 允许修改的目录：`src/`, `docs/`, `tests/`（按你的项目调整）
+- 允许修改的目录：`src/`, `docs/`, `tests/`, `stories/`, `prompts/`, `sessions/`, `issues/`, `scripts/`, `runbooks/`, `.github/`, `.cursor/`, `extensions/`（按你的项目调整）
 - 禁止修改：CI/CD 关键配置（除非明确授权）
 - 禁止把任何 token/密钥写入仓库（必须使用环境变量/secret manager）
 

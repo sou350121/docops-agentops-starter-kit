@@ -1,5 +1,21 @@
-﻿.venv/
+﻿# Python
 __pycache__/
-.pytest_cache/
 *.pyc
+.pytest_cache/
+.venv/
+.python-version
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# VS Code/Cursor extension artifacts
+extensions/**/out/
+extensions/**/node_modules/
+*.vsix
+
+# OS
 .DS_Store

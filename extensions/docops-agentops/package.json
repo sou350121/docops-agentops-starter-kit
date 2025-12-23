@@ -1,0 +1,52 @@
+{
+  "name": "docops-agentops",
+  "displayName": "DocOps + AgentOps",
+  "description": "DocOps + AgentOps workflow helpers: create/open evidence chain, copy master prompt, validate chain.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:docops.newStory",
+    "onCommand:docops.openEvidenceChain",
+    "onCommand:docops.copyMasterPrompt",
+    "onCommand:docops.validateEvidenceChain"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "docops.newStory",
+        "title": "DocOps: New Story (create evidence chain)"
+      },
+      {
+        "command": "docops.openEvidenceChain",
+        "title": "DocOps: Open Evidence Chain (story/prompt/status/failures)"
+      },
+      {
+        "command": "docops.copyMasterPrompt",
+        "title": "DocOps: Copy Master Prompt to Clipboard"
+      },
+      {
+        "command": "docops.validateEvidenceChain",
+        "title": "DocOps: Validate Evidence Chain"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -p . -w",
+    "package": "npx @vscode/vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.6.3"
+  }
+}
+
+
