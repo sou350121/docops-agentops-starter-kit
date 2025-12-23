@@ -2,6 +2,26 @@
 
 这是一套可复制到任意工程仓库的 **Hybrid DocOps（Repo 为正文）+ AgentOps（多角色闭环）** 脚手架。
 
+## Why / What / How（先看這段就夠）
+
+### Why（为什么要这套）
+- **避免需求“口头化/散落在 Issue/聊天”**：用 `stories/` 当唯一正文（SSOT），降低返工与误解。
+- **让交付可审计、可复用**：每次改动都有证据链（Story → Prompt/Failures → Code/Test → Ledger → Issue/PR）。
+- **多角色/多 agent 不断链**：PM/架构师、Coder、Reviewer 分工也能汇总回同一套文件。
+
+### What（这套到底是什么）
+- **一套目录与流程约定**：
+  - `stories/`（需求正文 SSOT）
+  - `prompts/`、`sessions/`（对话与失败路径记录）
+  - `docs/features/<id>/status.md`（变更摘要 + 验证命令的 ledger）
+  - `issues/`（离线 Issue 索引，占位/后续可贴到 GitHub）
+  - `scripts/validate-docops.*`（校验证据链齐全）
+
+### How（怎么用）
+- **最快**：把 repo link 丢给 agent，让它先读 runbook 然后按 story 交付（见下方「簡單（推薦）」）。
+- **团队分工**：直接用下方「角色分工閉環（PM→Coder→Reviewer）」三段模板依序贴给 agent。
+- **套用到你自己的 repo**：见下方「新手上手：把這套用到你自己的專案」。
+
 ### 簡單（推薦）：只用一份 Markdown 就讓 agent 自動跑起來
 
 把這個 GitHub repo link 丟給 agent，並在 chat 說「先讀它再開始做事」即可：

@@ -34,3 +34,4 @@
 - 修复 `scripts/new-story.ps1` 的 fenced code block 输出：PowerShell 双引号 here-string 会把 backtick 当转义，需对 backticks 做转义以输出三连反引号。
 - README 补上最简可复制的“角色分工闭环”模板（PM/Architect → Coder → Reviewer），让团队能用同一套证据链做分工协作。
 - 将“角色分工闭环”章节前置到 README 顶部（紧跟 repo link/runbook），让新手更快找到可操作入口。
+- README 再补一段 Why/What/How（先解释动机与组成，再把读者导向下方模板与 runbook）。

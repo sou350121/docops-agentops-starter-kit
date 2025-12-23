@@ -12,6 +12,7 @@
 ## 变更摘要
 - README 增加“新手上手：把这套用到你自己的专案”步骤与可直接贴给 agent 的消息模板。
 - README 增加最简“角色分工闭环”（PM/Architect → Coder → Reviewer）可复制模板（同一 story + 同一证据链），并将其前置到 README 顶部以便新手快速看到。
+- README 顶部增加 Why/What/How（先解释价值与组成，再指向下方可复制操作模板）。
 - Bootstrap runbook 增加 “0.5) 套用到你自己的专案 repo” 的 SOP（更详细 checklist + 模板）。
 - 修复 `scripts/new-story.ps1`：生成 Prompt VCS 时能正确输出 fenced code block（```markdown ... ```）。
 
