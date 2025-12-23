@@ -24,9 +24,9 @@
 - **团队分工**：直接用下方「角色分工閉環（PM→Coder→Reviewer）」三段模板依序贴给 agent。
 - **套用到你自己的 repo**：见下方「新手上手：把這套用到你自己的專案」。
 
-### 簡單（推薦）：只用一份 Markdown 就讓 agent 自動跑起來
+### 简单（推荐）：只用一份 Markdown 就让 agent 自动跑起来
 
-把這個 GitHub repo link 丟給 agent，並在 chat 說「先讀它再開始做事」即可：
+把这个 GitHub repo link 丢给 agent，并在 chat 说「先读它再开始做事」即可：
 - Repo：`https://github.com/sou350121/docops-agentops-starter-kit`
 - Runbook：`runbooks/AGENT_BOOTSTRAP_DOCOPS_AGENTOPS.md`
 
