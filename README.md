@@ -8,53 +8,6 @@
 - Repo：`https://github.com/sou350121/docops-agentops-starter-kit`
 - Runbook：`runbooks/AGENT_BOOTSTRAP_DOCOPS_AGENTOPS.md`
 
-## 新手上手：把這套用到你自己的專案（只知道 GitHub 連結也可以）
-
-> 目标：你有自己的项目 repo（可能是空的/已有代码），你想把这套 **DocOps + AgentOps 证据链闭环**搬进去。
-
-### 1) 把本套件放进你的 repo（最小拷贝）
-- 把以下目录/文件复制到**你的项目根目录**（允许按需删减，但建议先全量带上）：
-  - `stories/`
-  - `prompts/`
-  - `sessions/`
-  - `docs/features/`
-  - `issues/`
-  - `scripts/`
-  - `runbooks/`
-  - `.cursor/`（推荐：让 Cursor agent 默认遵守证据链规则）
-- （可选）启用 CI：
-  - 复制 `.github/workflows/docops-validation.yml` 到你的 repo
-
-### 2) 在你的 repo 里生成第一个 story 骨架
-- Windows（PowerShell）：
-  - `pwsh -NoProfile -File scripts/new-story.ps1 -Id S-0001 -Title add-login`
-- Bash/CI：
-  - `bash scripts/new-story.sh S-0001 add-login`
-
-### 3) 让 agent 开始干活（复制贴上这一段）
-
-> 把下面模板中的 `<YOUR_REPO>` 换成你的项目地址或本地路径，`<STORY_ID>`/`<TITLE>` 换成你的 story。
-
-```markdown
-你是工程交付型代理，请严格按 DocOps+AgentOps SOP 执行，不要扩大范围。
-
-请先阅读并遵守：`runbooks/AGENT_BOOTSTRAP_DOCOPS_AGENTOPS.md`
-
-我的项目：<YOUR_REPO>
-目标 Story：stories/<STORY_ID>-<TITLE>.md
-
-要求：
-1) 以 Story 为 SSOT：逐条对齐验收标准实现（只改动允许目录）
-2) 证据链必须闭环并回填：
-   - prompts/<STORY_ID>-<TITLE>.md
-   - docs/features/<STORY_ID>-<TITLE>/status.md
-   - sessions/<STORY_ID>-<TITLE>/failures.md（只有真的失败/偏航才写）
-3) 必须提供可复制的验证命令（至少）：
-   - pytest
-   - scripts/validate-docops（Windows + CI/Linux）
-4) 不要写入任何 token/密钥；不引入重型框架；不做大规模重构
-```
-
 ## 最簡單可操作：角色分工閉環（PM/架构师 → Coder → Reviewer）
 
 核心原則：**三個角色都在同一個 story 下工作**，並且**回填到同一套證據鏈**：
@@ -104,6 +57,53 @@
 3) 提出风险点与回滚方案（必要时写入 `docs/features/<ID>-<TITLE>/status.md` 或 `decisions.md`）
 4) 更新 `prompts/<ID>-<TITLE>.md` 追加：`### Agent: Reviewer / <date>`（审查结论与建议）
 输出：通过/不通过 + 需要修的点 + 最终验证命令。
+```
+
+## 新手上手：把這套用到你自己的專案（只知道 GitHub 連結也可以）
+
+> 目标：你有自己的项目 repo（可能是空的/已有代码），你想把这套 **DocOps + AgentOps 证据链闭环**搬进去。
+
+### 1) 把本套件放进你的 repo（最小拷贝）
+- 把以下目录/文件复制到**你的项目根目录**（允许按需删减，但建议先全量带上）：
+  - `stories/`
+  - `prompts/`
+  - `sessions/`
+  - `docs/features/`
+  - `issues/`
+  - `scripts/`
+  - `runbooks/`
+  - `.cursor/`（推荐：让 Cursor agent 默认遵守证据链规则）
+- （可选）启用 CI：
+  - 复制 `.github/workflows/docops-validation.yml` 到你的 repo
+
+### 2) 在你的 repo 里生成第一个 story 骨架
+- Windows（PowerShell）：
+  - `pwsh -NoProfile -File scripts/new-story.ps1 -Id S-0001 -Title add-login`
+- Bash/CI：
+  - `bash scripts/new-story.sh S-0001 add-login`
+
+### 3) 让 agent 开始干活（复制贴上这一段）
+
+> 把下面模板中的 `<YOUR_REPO>` 换成你的项目地址或本地路径，`<STORY_ID>`/`<TITLE>` 换成你的 story。
+
+```markdown
+你是工程交付型代理，请严格按 DocOps+AgentOps SOP 执行，不要扩大范围。
+
+请先阅读并遵守：`runbooks/AGENT_BOOTSTRAP_DOCOPS_AGENTOPS.md`
+
+我的项目：<YOUR_REPO>
+目标 Story：stories/<STORY_ID>-<TITLE>.md
+
+要求：
+1) 以 Story 为 SSOT：逐条对齐验收标准实现（只改动允许目录）
+2) 证据链必须闭环并回填：
+   - prompts/<STORY_ID>-<TITLE>.md
+   - docs/features/<STORY_ID>-<TITLE>/status.md
+   - sessions/<STORY_ID>-<TITLE>/failures.md（只有真的失败/偏航才写）
+3) 必须提供可复制的验证命令（至少）：
+   - pytest
+   - scripts/validate-docops（Windows + CI/Linux）
+4) 不要写入任何 token/密钥；不引入重型框架；不做大规模重构
 ```
 
 ### 4) 你自己怎么验证“真的跑通了”
