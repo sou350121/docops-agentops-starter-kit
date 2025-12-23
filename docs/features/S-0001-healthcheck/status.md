@@ -1,6 +1,6 @@
 # S-0001-healthcheck 状态
 
-- 状态：进行中
+- 状态：完成
 - Story：
   - stories/S-0001-healthcheck.md
 - Prompt：
@@ -10,7 +10,7 @@
 - Issue（索引占位）：
   - issues/ISSUE-0001.md
 - PR：
-  - （待创建：推送到 GitHub 后建立 PR，并在此回填链接）
+  - （可选：若需要演示 PR，可在 GitHub 上用 S-0002 再跑一轮；本 MVP 先以 main 合入为准）
 
 ## 变更摘要
 - 新增 `health_payload()`，提供可序列化健康信息。

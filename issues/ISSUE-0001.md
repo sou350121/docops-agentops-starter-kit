@@ -17,7 +17,7 @@
   - CI/Linux：`bash scripts/validate-docops.sh`
 
 ## Status
-- In Progress
+- Done
 
 ## Links
 - Prompt: `prompts/S-0001-healthcheck.md`
