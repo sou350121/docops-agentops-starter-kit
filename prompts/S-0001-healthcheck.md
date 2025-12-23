@@ -29,3 +29,13 @@
 ## 3. 迭代策略
 - 如果偏航：回到验收标准逐条对齐。
 - 如果有歧义：优先选择最小改动 + 可测试。
+
+### Agent: docops-agent (Cursor) / 2025-12-23
+
+#### 本次 Master Prompt（摘要）
+- 严格按 `stories/S-0001-healthcheck.md` 的验收标准交付，不扩大范围。
+- 证据链闭环：Story → Prompt/Failures → Code/Test → Ledger(status) → Issue index。
+
+#### 关键约束 / 决策
+- 不引入 Web 框架；保持实现为纯函数/数据结构（`src/app.py`）。
+- Windows PowerShell 运行命令不要用 `&&` 进行链式执行；使用 `;` + `$LASTEXITCODE` 做显式失败退出。

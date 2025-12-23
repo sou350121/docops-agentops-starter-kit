@@ -21,3 +21,6 @@
 - `pytest`
 - `pwsh -NoProfile -File scripts/validate-docops.ps1`（Windows）
 - `bash scripts/validate-docops.sh`（CI/Linux）
+
+### Windows 一键验证（PowerShell）
+- `python -m pip install -q pytest; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; pytest; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; pwsh -NoProfile -File scripts/validate-docops.ps1; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }`
