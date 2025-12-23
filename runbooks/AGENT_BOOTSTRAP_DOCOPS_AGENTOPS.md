@@ -71,6 +71,17 @@
   - `docs/features/<story>/status.md`：變更摘要 + 驗證命令（可複製執行）
   - `sessions/<story>/failures.md`：只有真的偏航/失敗/回滾/重大糾結才記（高信噪比）
 
+### 1.1) 需求 Agent（PM/架构师）Scope Guardrails（强制）
+
+> 目标：避免 PM/架构师 agent 因为上下文溢出/不确定而“补完需求”，做出 roadmap 以外的东西。
+
+- **只认 SSOT**：只基于 `stories/<id>.md`（与已批准的 `docs/features/<id>/decisions.md`）推导；不得新增 roadmap 以外需求。
+- **只能做三件事**：需求澄清、架构方案、任务拆分（拆到验收点 + 文件/模块）。
+- **任何扩范围必须先问**：以“范围变更请求”形式列出新增点/收益/成本/风险 → 等人类确认 → 才能回写 story 并继续。
+- **Context Overflow Fallback（上下文快爆就降级）**：
+  1) 先把“共识/边界/假设/待确认问题/风险”写回 story 或 decisions
+  2) 只输出“给 coder 的下一步任务清单”，停止发散
+
 ---
 
 ## 2) 一鍵命令（agent 可以自行跑）
