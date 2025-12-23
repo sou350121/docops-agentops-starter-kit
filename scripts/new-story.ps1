@@ -15,7 +15,8 @@ New-Item -ItemType Directory -Force -Path $sessionDir | Out-Null
 New-Item -ItemType Directory -Force -Path $featureDir | Out-Null
 New-Item -ItemType Directory -Force -Path (Join-Path $featureDir "screenshots") | Out-Null
 
-@"# $Id-$Title
+@"
+# $Id-$Title
 
 ## 目标
 
@@ -34,7 +35,8 @@ New-Item -ItemType Directory -Force -Path (Join-Path $featureDir "screenshots") 
 - $(Get-Date -Format 'yyyy-MM-dd'): 初始化
 "@ | Set-Content -Encoding UTF8 $storyFile
 
-@"# Prompt VCS: $Id-$Title
+@"
+# Prompt VCS: $Id-$Title
 
 ## 1. 核心提示词 (Master Prompt)
 ```markdown
@@ -51,7 +53,8 @@ New-Item -ItemType Directory -Force -Path (Join-Path $featureDir "screenshots") 
 - 如果偏航：回到验收标准逐条对齐。
 "@ | Set-Content -Encoding UTF8 $promptFile
 
-@"# 失败路径记录 (Failure Log)
+@"
+# 失败路径记录 (Failure Log)
 
 ## 尝试 #1
 - 日期：$(Get-Date -Format 'yyyy-MM-dd')
@@ -65,7 +68,8 @@ $promptRel = "prompts/{0}-{1}.md" -f $Id, $Title
 $sessionRel = "sessions/{0}-{1}" -f $Id, $Title
 $featureRel = "docs/features/{0}-{1}" -f $Id, $Title
 
-@"# $Id-$Title 状态
+@"
+# $Id-$Title 状态
 
 - 状态：进行中
 - Story：
