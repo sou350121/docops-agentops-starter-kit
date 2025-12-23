@@ -15,6 +15,52 @@
 
 ---
 
+## 0.5) 把這套套用到「你自己的專案 repo」（新手版）
+
+> 适用场景：你只知道这个 starter kit 的 GitHub 地址，但你希望 agent 把同一套 DocOps+AgentOps 证据链搬到你自己的项目中。
+
+### A) 你需要提供给 agent 的东西（最少）
+- 你的项目 repo（GitHub link 或本地路径）
+- 你要做的 story id + title（例如 `S-0001 add-login`）
+
+### B) agent 在你的项目里应该做的事（最小 checklist）
+- 把骨架复制进你的 repo（或在你的 repo 内创建同等结构）：
+  - `stories/`, `prompts/`, `sessions/`, `docs/features/`, `issues/`, `scripts/`, `runbooks/`, `.cursor/`
+- 生成 story 骨架（推荐用脚本）：
+  - Windows：`pwsh -NoProfile -File scripts/new-story.ps1 -Id <ID> -Title <kebab-title>`
+  - Bash：`bash scripts/new-story.sh <ID> <kebab-title>`
+- 按 story 验收标准交付并回填证据链：
+  - `prompts/<id>.md`、`docs/features/<id>/status.md`、（必要时）`sessions/<id>/failures.md`
+- 跑验证命令并把命令写回 status ledger：
+  - `pytest`
+  - Windows：`pwsh -NoProfile -File scripts/validate-docops.ps1`
+  - CI/Linux：`bash scripts/validate-docops.sh`
+
+### C) 可直接贴给 agent 的消息模板
+
+```markdown
+你是工程交付型代理，请严格按 DocOps+AgentOps SOP 执行，不要扩大范围。
+
+请先阅读并遵守：`runbooks/AGENT_BOOTSTRAP_DOCOPS_AGENTOPS.md`
+
+我的项目：<YOUR_REPO_URL_OR_PATH>
+目标 Story：stories/<ID>-<TITLE>.md（若不存在，请先用脚本创建；不要自创 id）
+
+约束：
+- 只改动允许目录；不引入重型框架/不做大规模重构
+- 不写入任何 token/密钥
+
+交付要求：
+1) 逐条对齐 story 的验收标准实现
+2) 必须回填证据链：
+   - prompts/<id>.md（记录 master prompt/关键决策）
+   - docs/features/<id>/status.md（变更摘要 + 验证命令）
+   - sessions/<id>/failures.md（仅当真的失败/偏航才写）
+3) 必须提供可复制验证命令：pytest + validate-docops（Windows/CI）
+```
+
+---
+
 ## 1) 最小工作規則（必須遵守）
 
 - **SSOT**：需求正文只認 `stories/S-xxxx-*.md`。
